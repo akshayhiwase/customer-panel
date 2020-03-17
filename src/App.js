@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import classes from './App.module.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Login from './Components/LoginPage/Login';
+import Account from './Components/AccountPage/Account';
+import NewOrder from './Components/NewOrderPage/NewOrder';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <div className={classes.mainContainer}>
+          <Switch>
+            <Route path="/account" component={Account} />
+            <Route path="/addneworder" component={NewOrder} />
+            <Route path="/" component={Login} />
+          </Switch>
+
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

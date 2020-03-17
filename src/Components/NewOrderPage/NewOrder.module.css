@@ -1,0 +1,76 @@
+.addNewOrderSection {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newOrderWrapper {
+  width: 40%;
+  background-color: #435c70;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.orderForm {
+  width: 100%;
+}
+.newOrderContainer {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+.newOrderHead {
+  width: 90%;
+  padding-left: 20px;
+  color: whitesmoke;
+}
+.inputFill {
+  width: 90%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: whitesmoke;
+}
+.inputFill input {
+  width: 90%;
+  height: 40px;
+  background-color: #54657d;
+  border: 0;
+  color: whitesmoke;
+  font-size: 15px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.inputFill p {
+  color: whitesmoke;
+  margin: 0;
+}
+.inputFill select {
+  width: 90%;
+  height: 40px;
+  font-size: 15px;
+  background-color: #54657d;
+  border: 0;
+  color: #acc6de;
+}
+.inputFill button {
+  width: 90%;
+  height: 50px;
+  color: #fff;
+  background-color: #f5a623;
+  border: 2px solid #f5a623;
+  font-size: 90%;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: #435c70;
+  color: #f5a623;
+}
