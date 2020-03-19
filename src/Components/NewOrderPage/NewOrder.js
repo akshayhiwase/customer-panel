@@ -6,24 +6,18 @@ class NewOrder extends React.Component {
         super(props);
         this.state = {}
     }
-    selectImage = (e) => {
-        console.log(e.target.files[0].name)
-    }
-    onUploadImageClicked = () => {
-
-    }
     onFormSubmit = (e) => {
         e.preventDefault()
         const productData = {
-            productName: e.target.pdtName.value,
-            decription: e.target.dec.value,
-            category: e.target.category.value,
-            expirydate: e.target.expDate.value,
-            stock: e.target.stock.value
+            orderID: e.target.orderID.value,
+            customerName: e.target.customerName.value,
+            customerEmail: e.target.email.value,
+            product: e.target.product.value,
+            quantity: e.target.quantity.value
         }
         console.log(productData)
-        alert("Your Product Added Successfully")
-        const path = `products`;
+        alert("Your Order Added Successfully")
+        const path = `account`;
         this.props.history.push(path);
     }
     render() {
@@ -36,19 +30,19 @@ class NewOrder extends React.Component {
                             <div className={classes.newOrderContainer}>
                                 <div className={classes.inputFill}>
                                     <label>Order ID</label>
-                                    <input type="text" required name="stock" />
+                                    <input type="text" required name="orderID" />
                                 </div>
                                 <div className={classes.inputFill}>
                                     <label>Customer Name</label>
-                                    <input type="text" required name="pdtName" />
+                                    <input type="text" required name="customerName" />
                                 </div>
                                 <div className={classes.inputFill} >
                                     <label>Email</label>
                                     <input type="email" required name="email" />
                                 </div>
                                 <div className={classes.inputFill}>
-                                    <p>Accounts</p>
-                                    <select className={classes.userSelectMenu} name="category">
+                                    <p>Products</p>
+                                    <select className={classes.userSelectMenu} name="product">
                                         <option value="Select Product">Select Product</option>
                                         <option value="Product 1">Product 1</option>
                                         <option value="Product 2">Product 2</option>
@@ -58,7 +52,7 @@ class NewOrder extends React.Component {
                                 </div>
                                 <div className={classes.inputFill}>
                                     <label>Quantity</label>
-                                    <input type="text" required name="stock" />
+                                    <input type="text" required name="quantity" pattern="^[1-9][0-9]*$" />
                                 </div>
 
 

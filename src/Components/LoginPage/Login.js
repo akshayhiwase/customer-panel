@@ -1,9 +1,11 @@
 import React from 'react';
 import classes from './Login.module.css';
-
+import { GoogleLogin } from 'react-google-login';
 
 class Login extends React.Component {
+    state = {
 
+    }
     onUserLogin = (e) => {
         e.preventDefault();
         const loginUser = {
@@ -18,7 +20,10 @@ class Login extends React.Component {
 
     render() {
 
-
+ 
+        const responseGoogle = (response) => {
+            console.log(response);
+          }
         return (
             <div className={classes.loginSection}>
                 <div className={classes.loginContaint}>
@@ -28,11 +33,11 @@ class Login extends React.Component {
                     <form action="" onSubmit={this.onUserLogin}>
                         <div className={classes.inputFieldSection}>
                             <label htmlFor="">Username</label>
-                            <input type="text" name="username" />
+                            <input type="email" name="username" required />
                         </div>
                         <div className={classes.inputFieldSection}>
                             <label htmlFor="">Password</label>
-                            <input type="password" name="password" />
+                            <input type="password" name="password" required />
                         </div>
                         <div className={classes.inputFieldSection}>
                             <button className={classes.loginBtn}>Login</button>
@@ -40,6 +45,13 @@ class Login extends React.Component {
                         <div className={classes.inputFieldSection}>
                             <button className={classes.loginBtn} onSubmit={this.onUserLogin}>Forgot Your Password?</button>
                         </div>
+                        <GoogleLogin
+                            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                            buttonText="Login"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />,
                     </form>
 
                 </div>

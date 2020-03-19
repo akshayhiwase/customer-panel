@@ -3,11 +3,12 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-direction: row-reverse;
 }
 .productInfoWrapper {
   margin-top: 100px;
   margin-bottom: 100px;
-  width: 60%;
+  width: 80%;
   background-color: #435c70;
   height: 100vh;
   display: flex;
@@ -23,7 +24,7 @@
   /* background-color: #567086; */
 }
 .productCategoriesWrapper {
-  width: 30%;
+  width: 20%;
   background-color: #435c70;
   height: 100vh;
   display: flex;
@@ -33,13 +34,16 @@
   overflow: auto;
   border-radius: 5px;
 }
+.infoHead tr {
+  border: 1px solid #acc6de;
+}
 .productInfoWrapper td {
   width: 10%;
   height: 50px;
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
   /* color: whitesmoke; */
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
 }
 .infoList {
@@ -84,11 +88,7 @@
   font-weight: 600;
   color: whitesmoke;
 }
-.infoList :hover {
-  background-color: #486177;
-  color: #acc6de;
-  cursor: pointer;
-}
+
 .productBtnSection {
   width: 90%;
   height: 50px;
@@ -155,6 +155,15 @@
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
+}
+.editOrderPopUp {
+  width: 50%;
+  height: 400px;
+  position: absolute;
+  background-color: whitesmoke;
+  color: #394e64;
+  top: 25%;
+  left: 25%;
 }
 
 button:hover {
