@@ -16,7 +16,6 @@ class Login extends React.Component {
         this.setState({
             userInfo: loginUser
         })
-        console.log(loginUser)
         alert("Login Successful")
         const path = `account`;
         this.props.history.push(path);

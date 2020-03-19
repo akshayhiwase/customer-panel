@@ -8,14 +8,14 @@ class NewOrder extends React.Component {
     }
     onFormSubmit = (e) => {
         e.preventDefault()
-        const productData = {
+        const newOrderData = {
             orderID: e.target.orderID.value,
             customerName: e.target.customerName.value,
             customerEmail: e.target.email.value,
             product: e.target.product.value,
             quantity: e.target.quantity.value
         }
-        console.log(productData)
+        sessionStorage.setItem("NewOrder", JSON.stringify(newOrderData))
         alert("Your Order Added Successfully")
         const path = `account`;
         this.props.history.push(path);
