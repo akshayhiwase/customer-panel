@@ -3,36 +3,45 @@ import classes from './Account.module.css';
 import { responseData } from '../JsonData/ResponseData';
 
 
-
 class Account extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             ordelList: responseData,
             editedOrder: {},
-            popUp: true
+            popUp: true,
+            userLogin: JSON.parse(localStorage.getItem("userAdmin"))
+
         }
     }
     onAddNewProductClick = () => {
-
         const path = `addneworder`;
         this.props.history.push(path);
     }
     onOrderEditClicked = (order) => {
         console.log(order);
         this.setState({
-            editedOrder: order
+            editedOrder: order,
+            popUp: !this.state.popUp,
         })
-        this.onEditedOrderSubmit()
     }
-    onEditedOrderSubmit = () => {
+    onEditedOrderSubmit = (e) => {
+        console.log(e.target)
         this.setState({
             popUp: !this.state.popUp,
         })
-        console.log("yes")
-    }
-    deleteNotes(key) {
+        const editedOrder = {
+            orderID: e.target.orderID.value,
+            customerName: e.target.customerName.value,
+            customerEmail: e.target.email.value,
+            product: e.target.product.value,
+            quantity: e.target.quantity.value
+        }
+        sessionStorage.setItem("editedOrder", JSON.stringify(editedOrder))
 
+    }
+
+    deleteNotes(key) {
         console.log(key)
         const filterList = this.state.ordelList.filter(item => item.id !== key);
         this.setState({
@@ -40,28 +49,65 @@ class Account extends React.Component {
         })
     }
     render() {
+        const userAdmin = <div className={classes.admin}>
+            <h1>Welcome Admin</h1>
+            <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" alt="User" />
+            <h3>{this.state.userLogin.username}</h3>
+        </div>
         const popUP = this.state.popUp ? null : (
-            <div className={classes.editOrderPopUp}>
-                <form action="">
-                    <input type="text" value={this.state.editedOrder.id} />
-                    <input type="text" value={this.state.editedOrder.customer_name} />
-                    <input type="text" value={this.state.editedOrder.customer_email} />
-                    <select className={classes.userSelectMenu} name="product">
-                        <option value="">{this.state.editedOrder.product}</option>
-                        <option value="Product 1">Product 1</option>
-                        <option value="Product 2">Product 2</option>
-                        <option value="Product 3">Product 3</option>
+            <div className={classes.editOrderSection} >
+                <div className={classes.editOrderPopUp}>
+                    <div className={classes.orderInfo}>
+                        <h2>Order Information</h2>
+                        <p>OrderID <br /> {this.state.editedOrder.id}</p>
+                        <p>Customer Name <br />{this.state.editedOrder.customer_name}</p>
+                        <p>Customer Email <br /> {this.state.editedOrder.customer_name}</p>
+                        <p>Product <br /> {this.state.editedOrder.product}</p>
+                        <p>Quantity <br /> {this.state.editedOrder.quantity}</p>
+                    </div>
+                    <form action="" onSubmit={this.onEditedOrderSubmit}>
+                        <div className={classes.editOrderContainer}>
+                            <h2>Edit Order </h2>
+                            <div className={classes.inputFill}>
+                                <label>Order ID</label>
+                                <input type="text" required name="orderID" />
+                            </div>
+                            <div className={classes.inputFill}>
+                                <label>Customer Name</label>
+                                <input type="text" required name="customerName" />
+                            </div>
+                            <div className={classes.inputFill} >
+                                <label>Email</label>
+                                <input type="email" required name="email" />
+                            </div>
+                            <div className={classes.inputFill}>
+                                <p>Products</p>
+                                <select className={classes.userSelectMenu} name="product">
+                                    <option value="Select Product">Select Product</option>
+                                    <option value="Product 1">Product 1</option>
+                                    <option value="Product 2">Product 2</option>
+                                    <option value="Product 3">Product 3</option>
 
-                    </select>
-                    <input type="text" value={this.state.editedOrder.quantity} />
-                    <input type="submit" value="Ok" onClick={this.onEditedOrderSubmit} />
-                </form>
+                                </select>
+                            </div>
+                            <div className={classes.inputFill}>
+                                <label>Quantity</label>
+                                <input type="text" required name="quantity" pattern="^[1-9][0-9]*$" />
+                            </div>
+
+
+                            <div className={classes.inputFill}>
+                                <button onSubmit={this.onEditedOrderSubmit} >Conform Edit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>)
 
 
         const orderInfo = (<tbody>
             {this.state.ordelList.map((list) => {
-                return <tr className={classes.infoList}>
+                return <tr className={classes.infoList} key={list.id}>
                     <td><div className={classes.selectList} onClick={() => this.onOrderEditClicked(list)}><i class="far fa-edit"></i></div></td>
                     <td>{list.id}</td>
                     <td>{list.customer_name}</td>
@@ -80,6 +126,7 @@ class Account extends React.Component {
             <div className={classes.productsSection} >
 
                 <div className={classes.productInfoWrapper}>
+                    <h1>Orders</h1>
                     <div className={classes.productInfoDetails}>
                         <div className={classes.infoHead}>
                             <thead>
@@ -96,15 +143,10 @@ class Account extends React.Component {
                     </div>
                     <div className={classes.productBtnSection}><button onClick={this.onAddNewProductClick}>Add New Order</button></div>
                 </div>
-                <div className={classes.productCategoriesWrapper}>
-                    <div className={classes.categoriesHead}>
-                        <h3>Product Categories</h3>
-                        {popUP}
-                    </div>
-                    <div className={classes.categoriListWrapper}>
-                    </div>
-                    <div className={classes.categoryAddBtn}><button>Add New Category</button></div>
-                </div>
+                {popUP}
+
+                {userAdmin}
+
 
 
 

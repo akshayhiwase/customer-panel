@@ -4,7 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 
 class Login extends React.Component {
     state = {
-
+        userInfo: {}
     }
     onUserLogin = (e) => {
         e.preventDefault();
@@ -12,6 +12,10 @@ class Login extends React.Component {
             username: e.target.username.value,
             password: e.target.password.value
         }
+        localStorage.setItem("userAdmin", JSON.stringify(loginUser))
+        this.setState({
+            userInfo: loginUser
+        })
         console.log(loginUser)
         alert("Login Successful")
         const path = `account`;
@@ -20,10 +24,10 @@ class Login extends React.Component {
 
     render() {
 
- 
+
         const responseGoogle = (response) => {
             console.log(response);
-          }
+        }
         return (
             <div className={classes.loginSection}>
                 <div className={classes.loginContaint}>

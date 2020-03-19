@@ -57,7 +57,7 @@ class NewOrder extends React.Component {
 
 
                                 <div className={classes.inputFill}>
-                                    <button onSubmit={this.onFormSubmit}>Add Product Now</button>
+                                    <button onSubmit={this.onFormSubmit}>Add Order Now</button>
                                 </div>
                             </div>
                         </form>
